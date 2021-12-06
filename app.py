@@ -2,6 +2,9 @@ import os
 from flask import Flask, flash, request, redirect, url_for, send_from_directory, Request, render_template
 from werkzeug.utils import secure_filename
 import mtcd
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
+from tensorflow.keras.models import Model
 from PIL import Image
 
 datahasil = os.listdir('static/result/')
