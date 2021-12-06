@@ -6,6 +6,13 @@ from flask import Flask, request, render_template
 from pathlib import Path
 
 app = Flask(__name__)
+@app.after_request
+def add_header(r):
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
 
 class FeatureExtractor:
     def __init__(self):
@@ -44,9 +51,9 @@ def index():
         ids = np.argsort(dists)[:30]
         scores = [(dists[id], img_paths[id]) for id in ids]
 
-        return render_template("index1.html", query_path=uploaded_img_path, scores =scores) 
+        return render_template("/index1.html", query_path=uploaded_img_path, scores =scores) 
     else:    
-        return render_template("index1.html")
+        return render_template("/index1.html")
 
 
 
@@ -59,4 +66,4 @@ import numpy as np
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0', port=2000)
