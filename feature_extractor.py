@@ -1,9 +1,6 @@
-
-import tensorflow
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.vgg19 import VGG19, preprocess_input
 from tensorflow.keras.models import Model
-from vit import VisionTransformer
 import numpy as np
 
 class FeatureExtractor:
