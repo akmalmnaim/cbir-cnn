@@ -19,6 +19,7 @@ class FeatureExtractor:
         x = preprocess_input(x)
         feature = self.model.predict(x)[0]
         return feature / np.linalg.norm(feature)
+
 fe = FeatureExtractor()
 features = []
 img_paths = []
@@ -49,7 +50,6 @@ def index():
 
 
 
-import tensorflow
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.vgg19 import VGG19, preprocess_input
 from tensorflow.keras.models import Model
